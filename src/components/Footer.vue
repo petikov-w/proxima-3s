@@ -21,7 +21,7 @@ export default {
   width: 1100px;
   margin: 0 auto;
   display: flex;
-  margin-top: -80px; // <<------------------ мобил убрать
+  margin-top: -40px; // <<------------------ мобил убрать
   @media screen and (max-width: $phoneWidth) {
     margin-top: -40px;
     flex-direction: column;

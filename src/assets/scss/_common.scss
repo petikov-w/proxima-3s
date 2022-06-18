@@ -17,9 +17,11 @@ html {
 }
 
 body {
-  background-color: $mainBackgroundColor;
-  background: url(@/assets/images/main-page-pic.png)  no-repeat;
+  //background-color: #1C2739;
+  background: #1C2739 url(@/assets/images/main-page-pic.png)  no-repeat;
+  //background: #1C2739 url(@/assets/images/main-page-pic.png)  cover;
   background-position-x: 58%;
+  //background-size: cover;
   //font-family: $mainFont;
   //font-size: $mainFontSize;
   //font-weight: $mainFontWeight;

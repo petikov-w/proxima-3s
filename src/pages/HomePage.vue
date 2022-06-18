@@ -26,16 +26,36 @@ include ../assets/pug/mixins
 //    //img(src="@/assets/images/btn_zakaz_gaz.png" @click="hiddenDialog")
 
 .wrapper-home
-  .left-col
-    .title Качественный газ для газгольдера
-    .subtitle Доставка в любое время дня и ночи вне зависимости от погодных условий
-    img(src="@/assets/images/btn_zakaz_gaz.png" @click="showDialog")
-  //  .services-box
-  //    div(v-for="(serv, index) in listServices" :key="index")
-  //      services(:services="serv" v-if="isEven(index)" style="margin-right: 57px" )
-  //      services(:services="serv" v-if="!isEven(index)")
-  .middle-col
-    img(src="@/assets/images/car_1.png")
+  section-01
+    .left-col
+      .title Качественный газ для газгольдера
+      .set-prosent
+        .info-gaz
+          .procent 80%
+          .name-gaz пропана
+        .info-gaz
+          .procent 20%
+          .name-gaz бутана
+      .subtitle Доставка в любое время дня и ночи вне зависимости от погодных условий
+      img(src="@/assets/images/btn_zakaz_gaz.png" @click="showDialog")
+    .right-col
+      img(src="@/assets/images/car_1.png" class="img-car")
+  section-02
+    .advantage
+      img(src="@/assets/images/sistern.png")
+      .title-adv  Экономия на хранилище
+      .subtitle-adv(v-html="subtitle_adv_1" )
+    .advantage
+      img(src="@/assets/images/track_1.png")
+      .title-adv  Экономия на транспорте
+      .subtitle-adv(v-html="subtitle_adv_2" )
+    .advantage
+      img(src="@/assets/images/cards_1.png" width="80%")
+      .title-adv  Оплата удобным для вас способом
+      .subtitle-adv(v-html="subtitle_adv_3" )
+    .advantage
+
+
 
 </template>
 
@@ -54,6 +74,9 @@ export default {
     // const axios = require('axios').default;
     const listServices = contentServices
     const isEven = number => number % 2 === 0 ? true : false
+    const subtitle_adv_1 = "за счёт собственных цистерн на нашей базе вы экономите <b style='font-weight:900; color: #ffffff;'>до 10%</b> вашего бюджета"
+    const subtitle_adv_2 = "более 10 собственных газовозов которые экономят <b style='font-weight:900; color: #ffffff;'>5 – 7%</b> ваших денежных средств"
+    const subtitle_adv_3 = "вы можете оплачивать как <b style='font-weight:900; color: #ffffff;'>наличными</b>, так и по <b style='font-weight:900; color: #ffffff;'>терминалу</b> который оборудован во все наши газовозы"
     let in_name = ref("")
     let in_telefon = ref("")
     const dialogVisible = ref(false)
@@ -65,6 +88,9 @@ export default {
             in_name,
             in_telefon,
             dialogVisible,
+            subtitle_adv_1,
+            subtitle_adv_2,
+            subtitle_adv_3,
             showDialog,
             hiddenDialog,
             hiddenDialogCloseBtn}
@@ -139,98 +165,156 @@ export default {
   width: 1100px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  //margin-top: -70px;
-  //margin-bottom: -100px;
-  height: 87vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  //height: 87vh;
   @media screen and (max-width: $phoneWidth) {
    flex-direction: column;
     width: 380px;
     align-items: center;
   }
-  .left-col {
-    //max-width: 617px;
-    max-width: 40vw;
-    font-family: $font-RussoOne;
-    font-weight: 400;
-    text-align: left;
-    margin-top: 15px;
-    @media screen and (max-width: $phoneWidth) {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .title {
-      @include font(48px, 400, 58px, #EF5221);
-      width: 500px;
-      @media screen and (max-width: $phoneWidth) {
-        @include font(36px, 400, 44px, #EF5221);
-        max-width: 360px;
-        text-align: center;
-        margin-left: -30px;
-      }
-    }
-    .subtitle {
-      @include font(21px, 400, 25px, #ffffff);
-      margin: 15px 0 27px;
-      max-width: 450px;
-      @media screen and (max-width: $phoneWidth) {
-        @include font(17px, 400, 21px, #ffffff);
-        width: 340px;
-        text-align: center;
-        margin-left: -40px;
-      }
-    }
-    img {
-      z-index: 1;
-      @media screen and (max-width: $phoneWidth) {
-        max-width: 190%;
-        //margin-left: 20px;
-        margin-left: -30px;
-      }
-    }
-    img:hover {
-      opacity: 0.8;
-    }
-    .services-box {
-      display: flex;
-      flex-wrap: wrap;
-      @media screen and (max-width: $phoneWidth) {
-        margin-left: 30px;
-        //text-align: center;
-      }
-    }
-  }
-
-  .middle-col {
-    //max-width: 558px;
-    position: relative;
-    max-width: 60vw;
-    font-family: $font-RussoOne;
-    font-weight: 400;
-    margin-top: 15px;
-    margin-left: -150px;
+  section-01 {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: flex-start;
-    @media screen and (max-width: $phoneWidth) {
-      margin-left: -70px;
-    }
-
+    .left-col {
+      //max-width: 617px;
+      max-width: 40vw;
+      font-family: $font-RussoOne;
+      font-weight: 400;
+      text-align: left;
+      margin-top: 15px;
+      @media screen and (max-width: $phoneWidth) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .title {
+        @include font(48px, 400, 58px, #EF5221);
+        width: 500px;
+        @media screen and (max-width: $phoneWidth) {
+          @include font(36px, 400, 44px, #EF5221);
+          max-width: 360px;
+          text-align: center;
+          margin-left: -30px;
+        }
+      }
+      .set-prosent {
+        display: flex;
+        .info-gaz {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          margin: 20px 20px 15px 0;
+          //color: #f1f1f1;
+          opacity: 0.7;
+          .procent {
+            @include font(36px, 400, 43px, #f1f1f1);
+          }
+          .name-gaz {
+            @include font(18px, 400, 22px, #f1f1f1);
+          }
+        }
+      }
+      .subtitle {
+        @include font(21px, 400, 25px, #ffffff);
+        margin: 15px 0 27px;
+        max-width: 450px;
+        @media screen and (max-width: $phoneWidth) {
+          @include font(17px, 400, 21px, #ffffff);
+          width: 340px;
+          text-align: center;
+          margin-left: -40px;
+        }
+      }
       img {
+        z-index: 1;
+        @media screen and (max-width: $phoneWidth) {
+          max-width: 190%;
+          //margin-left: 20px;
+          margin-left: -30px;
+        }
+      }
+      img:hover {
+        opacity: 0.8;
+      }
+      .services-box {
+        display: flex;
+        flex-wrap: wrap;
+        @media screen and (max-width: $phoneWidth) {
+          margin-left: 30px;
+          //text-align: center;
+        }
+      }
+    }
+    .right-col {
+      max-width: 60vw;
+      margin-top: 15px;
+      margin-left: -150px;
+      display: flex;
+      .img-car {
         position: absolute;
-        right: 200px;
-        margin-top: 5px;
-        //width: 52px;
-        //height: 65px;
-        margin-left: 20px;
+        right: 80px;
+        //margin-top: 5px;
+        max-width: 100%;
+        max-height: 100%;
+        //max-width: 704px;
+        //max-height: 480px;
+
+
+        @media screen and (max-width: $smDesktopWidth) {
+          display: none;
+        }
+        @media screen and (max-width: 1200px) {
+          right: -250px;
+        }
+        @media screen and (max-width: $desktopWidth) {
+          max-width: 80%;
+          max-height: 80%;
+          right: 60px;
+        }
         @media screen and (max-width: $phoneWidth) {
           display: none;
         }
-
       }
     }
+  }
+  section-02 {
+    display: flex;
+    justify-content: space-between;
+    .advantage {
+      //position: relative;
+      width: 247px;
+      height: 213px;
+      border-radius: 20px;
+      //background-color: #f1f1f1;
+      background: rgba(241, 241, 241, 0.2);
+      margin: 60px 0 15px 0;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .title-adv {
+        font-family: $font-RussoOne;
+        @include font(20px, 400, 24px, #EF6D00);
+        padding: 5px 0 15px 0;
+        text-align: center;
+      }
+      .subtitle-adv {
+        font-family: $font-OpenSans;
+        @include font(14px, 400, 19px, rgba(241, 241, 241, 0.8));
+        padding: 5px 20px;
+        text-align: center;
+        }
+      img {
+        width: 124px;
+        height: 67px;
+        margin-top: -30px;
+        .img-cards {
+          width: 104px;
+          height: 60px;
+        }
+      }
 
+    }
+  }
 }
 </style>

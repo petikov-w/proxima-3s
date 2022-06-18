@@ -191,7 +191,7 @@ export default {
       }
     }
     .subtitle {
-      @include font(24px, 400, 29px, #ffffff);
+      @include font(21px, 400, 29px, #ffffff);
       margin: 15px 0 27px;
       max-width: 450px;
       @media screen and (max-width: $phoneWidth) {
