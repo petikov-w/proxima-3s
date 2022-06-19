@@ -1,41 +1,43 @@
 <template lang="pug">
 include ../assets/pug/mixins
 
-//Dialog(v-model:show="dialogVisible")
-//  form(
-//       class="note-form"
-//       @submit.prevent="onSubmit")
-//    .header-title
-//      .form-title Получите расчет стоимости доставки
-//      .close-form(@click="hiddenDialogCloseBtn") &#10005
-//    input(
-//      required
-//      name="name"
-//      v-model="in_name"
-//      placeholder="Имя")
-//    input(
-//      required
-//      name="telefon"
-//      v-model="in_telefon"
-//      placeholder="Телефон")
-//    input(
-//      type="image"
-//      name="picture"
-//      src="@/assets/images/btn_zakaz_gaz.png"
-//      @click="hiddenDialog")
-//    //img(src="@/assets/images/btn_zakaz_gaz.png" @click="hiddenDialog")
+Dialog(v-model:show="dialogVisible")
+  form(
+       class="note-form"
+       @submit.prevent="onSubmit")
+    .header-title
+      .form-title Получите расчет стоимости доставки
+      .close-form(@click="hiddenDialogCloseBtn") &#10005
+    input(
+      required
+      name="name"
+      v-model="in_name"
+      placeholder="Имя")
+    input(
+      required
+      name="telefon"
+      v-model="in_telefon"
+      placeholder="Телефон")
+    //input(
+    //  type="image"
+    //  name="picture"
+    //  src="@/assets/images/btn_zakaz_gaz.png"
+    //  @click="hiddenDialog")
+    img(src="@/assets/images/btn_zakaz_gaz.png" @click="hiddenDialog")
 
 .wrapper-home
   section-01
     .left-col
       .title Качественный газ для газгольдера
       .set-prosent
-        .info-gaz
-          .procent 80%
-          .name-gaz пропана
-        .info-gaz
-          .procent 20%
-          .name-gaz бутана
+        .info
+          .info-gaz
+            .procent 80%
+            .name-gaz пропана
+        .info
+          .info-gaz
+            .procent 20%
+            .name-gaz бутана
       .subtitle Доставка в любое время дня и ночи вне зависимости от погодных условий
       img(src="@/assets/images/btn_zakaz_gaz.png" @click="showDialog")
     .right-col
@@ -43,20 +45,20 @@ include ../assets/pug/mixins
   section-02
     .advantage
       img(src="@/assets/images/sistern.png")
-      .title-adv  Экономия на хранилище
-      .subtitle-adv(v-html="subtitle_adv_1" )
+      .title-adv  Экономия<br> на хранилище
+      .subtitle-adv(v-html="subtitle_adv_1")
     .advantage
       img(src="@/assets/images/track_1.png")
-      .title-adv  Экономия на транспорте
-      .subtitle-adv(v-html="subtitle_adv_2" )
+      .title-adv  Экономия<br> на транспорте
+      .subtitle-adv(v-html="subtitle_adv_2")
     .advantage
-      img(src="@/assets/images/cards_1.png" width="80%")
-      .title-adv  Оплата удобным для вас способом
-      .subtitle-adv(v-html="subtitle_adv_3" )
+      img(src="@/assets/images/cards_1.png")
+      .title-adv  Оплата удобным<br> для вас способом
+      .subtitle-adv(v-html="subtitle_adv_3")
     .advantage
-
-
-
+      img.ballon(src="@/assets/images/baloon_1.png")
+      .title-adv  Любые объёмы поставки качественного газа
+      .subtitle-adv(v-html="subtitle_adv_4")
 </template>
 
 <script>
@@ -77,6 +79,7 @@ export default {
     const subtitle_adv_1 = "за счёт собственных цистерн на нашей базе вы экономите <b style='font-weight:900; color: #ffffff;'>до 10%</b> вашего бюджета"
     const subtitle_adv_2 = "более 10 собственных газовозов которые экономят <b style='font-weight:900; color: #ffffff;'>5 – 7%</b> ваших денежных средств"
     const subtitle_adv_3 = "вы можете оплачивать как <b style='font-weight:900; color: #ffffff;'>наличными</b>, так и по <b style='font-weight:900; color: #ffffff;'>терминалу</b> который оборудован во все наши газовозы"
+    const subtitle_adv_4 = "вы получаете объем <b style='font-weight:900; color: #ffffff;'>от 1 до 20 тонн,</b> с сертификатом качества газа"
     let in_name = ref("")
     let in_telefon = ref("")
     const dialogVisible = ref(false)
@@ -91,6 +94,7 @@ export default {
             subtitle_adv_1,
             subtitle_adv_2,
             subtitle_adv_3,
+            subtitle_adv_4,
             showDialog,
             hiddenDialog,
             hiddenDialogCloseBtn}
@@ -200,19 +204,29 @@ export default {
       }
       .set-prosent {
         display: flex;
-        .info-gaz {
+        .info {
           display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          margin: 20px 20px 15px 0;
-          //color: #f1f1f1;
-          opacity: 0.7;
-          .procent {
-            @include font(36px, 400, 43px, #f1f1f1);
+          align-items: center;
+          &:nth-child(1):after {
+            content: '';
+            height: 55%;
+            width: 1.5px;
+            margin: 5px 25px 0 5px;
+            background: rgba(241, 241, 241, 0.3);
           }
-          .name-gaz {
-            @include font(18px, 400, 22px, #f1f1f1);
-          }
+          .info-gaz {
+             display: flex;
+             flex-direction: column;
+             justify-content: flex-start;
+             margin: 20px 20px 15px 0;
+             opacity: 0.7;
+             .procent {
+               @include font(36px, 400, 43px, #f1f1f1);
+             }
+             .name-gaz {
+               @include font(18px, 400, 22px, #f1f1f1);
+             }
+           }
         }
       }
       .subtitle {
@@ -254,13 +268,8 @@ export default {
       .img-car {
         position: absolute;
         right: 80px;
-        //margin-top: 5px;
         max-width: 100%;
         max-height: 100%;
-        //max-width: 704px;
-        //max-height: 480px;
-
-
         @media screen and (max-width: $smDesktopWidth) {
           display: none;
         }
@@ -305,15 +314,12 @@ export default {
         text-align: center;
         }
       img {
-        width: 124px;
-        height: 67px;
         margin-top: -30px;
-        .img-cards {
-          width: 104px;
-          height: 60px;
-        }
       }
-
+      .ballon {
+        margin-top: -68px;
+        margin-bottom: -5px;
+      }
     }
   }
 }
