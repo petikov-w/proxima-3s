@@ -1,30 +1,6 @@
 <template lang="pug">
-include ../assets/pug/mixins
-
 Dialog(v-model:show="dialogVisible")
-  form(
-       class="note-form"
-       @submit.prevent="onSubmit")
-    .header-title
-      .form-title Получите расчет стоимости доставки
-      .close-form(@click="hiddenDialogCloseBtn") &#10005
-    input(
-      required
-      name="name"
-      v-model="in_name"
-      placeholder="Имя")
-    input(
-      required
-      name="telefon"
-      v-model="in_telefon"
-      placeholder="Телефон")
-    //input(
-    //  type="image"
-    //  name="picture"
-    //  src="@/assets/images/btn_zakaz_gaz.png"
-    //  @click="hiddenDialog")
-    img(src="@/assets/images/btn_zakaz_gaz.png" @click="hiddenDialog")
-
+  include ../assets/pug/formGasOrder
 .wrapper-home
   section-01
     .left-col
@@ -103,68 +79,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-::placeholder {
-  text-transform: uppercase;
-  font-family: $font-OpenSans;
-  @include font(12px, 400, 16px, #2D2D2D80);
-}
-.header-title {
-  display: flex;
-  justify-content: space-between;
-  //align-items: center;
-  width: 380px;
-  @media screen and (max-width: $phoneWidth) {
-    width: 330px;
-  }
-
-  //text-align: center;
-  .form-title {
-    font-family: $font-RussoOne;
-    @include font(20px, 400, 24px, #EF5221);
-    letter-spacing: 1.1px;
-    text-transform: uppercase;
-    max-width: 280px;
-    margin: 10px 0 25px 0;
-    //text-align: center;
-  }
-  .close-form {
-    @include font(34px, 500, 42px, #EF5221);
-    cursor: pointer;
-  }
-}
-
-.note-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  img {
-    width: 85%;
-    margin-bottom: 25px;
-    margin-top: 15px;
-  }
-  input {
-    width: 400px;
-    height: 50px;
-    border-radius: 10px;
-    padding: 10px 10px;
-    margin: 5px 17px 25px;
-    color: #EF5221;
-    @media screen and (max-width: $phoneWidth) {
-      width: 330px;
-    }
-  }
-}
-.under {
-  font-size: 16px;
-  vertical-align: sub;
-  margin: 0 3px;
-}
-.under-n {
-  margin: 0!important;
-}
-
 .wrapper-home {
   width: 1100px;
   margin: 0 auto;
