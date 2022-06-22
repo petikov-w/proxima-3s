@@ -1,24 +1,27 @@
 <template lang="pug">
 .header-wrapper
-    img(:src="img_logo" alt="logo")
+    img(:src='$store.state.contentHeader.logo' alt="logo")
+    //img(:src="img_logo" alt="logo")
     .info
-      Telefon(:tel="contact_telefon" class="m-top")
-      span {{ link_hot_question }}
+      Telefon(:tel='$store.state.contentHeader.telefon' class="m-top")
+      //Telefon(:tel="contact_telefon" class="m-top")
+      span {{ $store.state.contentHeader.subtitle }}
+      //span {{ link_hot_question }}
 
       //router-link(class="navbar-logo" to="/")
 </template>
 
 <script>
-import {contentHeader} from "@/_config"
+// import {contentHeader} from "@/_config"
 import Telefon from '@/components/UI/NumberTelefon'
 export default {
   name: 'vHeader',
   components: {Telefon},
   setup() {
-    const img_logo = contentHeader.listItem.logo;
-    const contact_telefon = contentHeader.listItem.telefon;
-    const link_hot_question = contentHeader.listItem.subtitle;
-    return {img_logo, contact_telefon, link_hot_question}
+    // const img_logo = contentHeader.listItem.logo;
+    // const contact_telefon = contentHeader.listItem.telefon;
+    // const link_hot_question = contentHeader.listItem.subtitle;
+    // return {img_logo, contact_telefon, link_hot_question}
   }
 }
 </script>
