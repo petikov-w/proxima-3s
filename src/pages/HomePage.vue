@@ -4,37 +4,38 @@ Dialog(v-model:show="dialogVisible")
 .wrapper-home
   section-01
     .left-col
-      .title Качественный газ для газгольдера
+      .title {{ $store.state.main_content.title }}
       .set-prosent
-        .info
+        .info(v-for="(info,index) in $store.state.main_content.info" :key="index")
           .info-gaz
-            .procent 80%
-            .name-gaz пропана
-        .info
-          .info-gaz
-            .procent 20%
-            .name-gaz бутана
-      .subtitle Доставка в любое время дня и ночи вне зависимости от погодных условий
-      img(src="@/assets/images/btn_zakaz_gaz.png" @click="showDialog")
+            .procent {{ info.procent }}
+            .name-gaz {{ info.gaz }}
+      .subtitle {{ $store.state.main_content.subtitle }}
+      img(:src="$store.state.images.button" @click="showDialog")
     .right-col
-      img(src="@/assets/images/car_1.png" class="img-car")
+      img(:src="$store.state.images.big_car" class="img-car")
+
   section-02
-    .advantage
-      img(src="@/assets/images/sistern.png")
-      .title-adv  Экономия<br> на хранилище
-      .subtitle-adv(v-html="subtitle_adv_1")
-    .advantage
-      img(src="@/assets/images/track_1.png")
-      .title-adv  Экономия<br> на транспорте
-      .subtitle-adv(v-html="subtitle_adv_2")
-    .advantage
-      img(src="@/assets/images/cards_1.png")
-      .title-adv  Оплата удобным<br> для вас способом
-      .subtitle-adv(v-html="subtitle_adv_3")
-    .advantage
-      img.ballon(src="@/assets/images/baloon_1.png")
-      .title-adv  Любые объёмы поставки качественного газа
-      .subtitle-adv(v-html="subtitle_adv_4")
+    .advantage(v-for="(item,index) in $store.state.advantage.list" :key="index")
+      img(:src="item.img")
+      .title-adv(v-html='item.title')
+      .subtitle-adv(v-html='item.descr')
+    //.advantage
+    //  img(src="@/assets/images/sistern.png")
+    //  .title-adv  Экономия<br> на хранилище
+    //  .subtitle-adv(v-html="subtitle_adv_1")
+    //.advantage
+    //  img(src="@/assets/images/track_1.png")
+    //  .title-adv  Экономия<br> на транспорте
+    //  .subtitle-adv(v-html="subtitle_adv_2")
+    //.advantage
+    //  img(src="@/assets/images/cards_1.png")
+    //  .title-adv  Оплата удобным<br> для вас способом
+    //  .subtitle-adv(v-html="subtitle_adv_3")
+    //.advantage
+    //  img.ballon(src="@/assets/images/baloon_1.png")
+    //  .title-adv  Любые объёмы поставки качественного газа
+    //  .subtitle-adv(v-html="subtitle_adv_4")
 </template>
 
 <script>
@@ -52,10 +53,10 @@ export default {
     // const axios = require('axios').default;
     const listServices = contentServices
     const isEven = number => number % 2 === 0 ? true : false
-    const subtitle_adv_1 = "за счёт собственных цистерн на нашей базе вы экономите <b style='font-weight:900; color: #ffffff;'>до 10%</b> вашего бюджета"
-    const subtitle_adv_2 = "более 10 собственных газовозов которые экономят <b style='font-weight:900; color: #ffffff;'>5 – 7%</b> ваших денежных средств"
-    const subtitle_adv_3 = "вы можете оплачивать как <b style='font-weight:900; color: #ffffff;'>наличными</b>, так и по <b style='font-weight:900; color: #ffffff;'>терминалу</b> который оборудован во все наши газовозы"
-    const subtitle_adv_4 = "вы получаете объем <b style='font-weight:900; color: #ffffff;'>от 1 до 20 тонн,</b> с сертификатом качества газа"
+    // const subtitle_adv_1 = "за счёт собственных цистерн на нашей базе вы экономите <b style='font-weight:900; color: #ffffff;'>до 10%</b> вашего бюджета"
+    // const subtitle_adv_2 = "более 10 собственных газовозов которые экономят <b style='font-weight:900; color: #ffffff;'>5 – 7%</b> ваших денежных средств"
+    // const subtitle_adv_3 = "вы можете оплачивать как <b style='font-weight:900; color: #ffffff;'>наличными</b>, так и по <b style='font-weight:900; color: #ffffff;'>терминалу</b> который оборудован во все наши газовозы"
+    // const subtitle_adv_4 = "вы получаете объем <b style='font-weight:900; color: #ffffff;'>от 1 до 20 тонн,</b> с сертификатом качества газа"
     let in_name = ref("")
     let in_telefon = ref("")
     const dialogVisible = ref(false)
@@ -67,10 +68,10 @@ export default {
             in_name,
             in_telefon,
             dialogVisible,
-            subtitle_adv_1,
-            subtitle_adv_2,
-            subtitle_adv_3,
-            subtitle_adv_4,
+            // subtitle_adv_1,
+            // subtitle_adv_2,
+            // subtitle_adv_3,
+            // subtitle_adv_4,
             showDialog,
             hiddenDialog,
             hiddenDialogCloseBtn}
@@ -121,7 +122,7 @@ export default {
         .info {
           display: flex;
           align-items: center;
-          &:nth-child(1):after {
+          &:not(:last-child):after {
             content: '';
             height: 55%;
             width: 1.5px;
@@ -215,6 +216,13 @@ export default {
       display: flex;
       align-items: center;
       flex-direction: column;
+      &:nth-child(4) {
+        img {
+          margin-top: -68px;
+          margin-bottom: -5px;
+        }
+      }
+
       .title-adv {
         font-family: $font-RussoOne;
         @include font(20px, 400, 24px, #EF6D00);
@@ -226,10 +234,14 @@ export default {
         @include font(14px, 400, 19px, rgba(241, 241, 241, 0.8));
         padding: 5px 20px;
         text-align: center;
+        &:nth-child(4) {
+          color: red;
+        }
         }
       img {
         margin-top: -30px;
       }
+
       .ballon {
         margin-top: -68px;
         margin-bottom: -5px;
