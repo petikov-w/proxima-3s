@@ -2,6 +2,7 @@ import {createStore} from "vuex";
 
 export default createStore({
     state: function () {
+        const telefon = "79094282463";
         const main_content = {
             title: "Качественный газ для газгольдера",
             subtitle: "Доставка в любое время дня и ночи вне зависимости от погодных условий",
@@ -50,7 +51,8 @@ export default createStore({
             images,
             advantage,
             contentHeader,
-            site
+            site,
+            telefon
         }
     }
 });

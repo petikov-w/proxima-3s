@@ -5,6 +5,7 @@ const routerHistory = createWebHistory();
 import HomePage from "@/pages/HomePage";
 import notFoundPage from "@/pages/NotFoundPage";
 import ThankYouPage from "@/pages/ThankYouPage";
+import AdminPage from "@/pages/AdminPage";
 // import {site} from "@/_config";
 const site = "Proxima";
 
@@ -18,6 +19,14 @@ const routers = createRouter(
                 component: HomePage,
                 meta: {
                     title: "Главная"
+                }
+            },
+            {
+                path: "/admin",
+                name: "admin",
+                component: AdminPage,
+                meta: {
+                    title: "Панель администратора"
                 }
             },
             {
